@@ -47,6 +47,21 @@ export default new Router({
             title:'添加管理员',
           },
           component:()=>import('@/views/adminUser/addadmin')
+        }, {
+          path:'/news',
+          name:'news',
+          meta:{
+            title:'新闻管理',
+          },
+          component:()=>import('@/views/news')
+        },
+        {
+          path:'/newsadd',
+          name:'newsadd',
+          meta:{
+            title:'新闻添加',
+          },
+          component:()=>import('@/views/news/newsadd')
         }
                
 

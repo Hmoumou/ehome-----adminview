@@ -1,14 +1,12 @@
 <template>
-    <div class="home">
-        我是首页
+    <div class="news">
+        新闻列表
     </div>
 </template>
 
 <script>
     export default {
-        name:'home',
-        created(){
-        }
+        name:'news'
     }
 </script>
 

@@ -18,6 +18,8 @@
                   <el-input v-model="formData.nickname"></el-input>
                 </el-form-item>
                  <el-form-item label="性别" >
+                   <!-- <el-radio value='0' v-model="formData.sex">女</el-radio>
+                   <el-radio value='1' v-model="formData.sex">男</el-radio> -->
                   <el-select v-model="formData.sex">
                     <el-option label='男' value='1'></el-option>
                     <el-option label='女' value='0'></el-option>
@@ -81,19 +83,19 @@ export default {
         }
       })
     },
-     getData(){
-                this.$axios.get(`/admin/adminuser/${this.id}`).then(res=>{
-                    console.log(res.data.data)
-                    this.detailData = res.data.data
-                })
-            }
+    //  getData(){
+    //             this.$axios.get(`/admin/adminuser/${this.id}`).then(res=>{
+    //                 console.log(res.data.data)
+    //                 this.detailData = res.data.data
+    //             })
+    //         }
   },
   components:{
       upload,
   },
   created(){
      this.id = this.$route.query.id
-           this.getData()
+          //  this.getData()
   }
 };
 </script>

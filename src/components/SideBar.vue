@@ -28,6 +28,21 @@
                 </router-link>
             </el-menu-item>
         </el-submenu>
+         <el-submenu index="2">
+            <div slot='title'>
+                新闻管理
+            </div>
+            <el-menu-item class="item" index='/layout/news'>
+                <router-link to='/news'>
+                    新闻列表
+                </router-link>
+            </el-menu-item>
+             <el-menu-item class="item" index='/layout/newsadd'>
+                <router-link to='/newsadd'>
+                    新闻添加
+                </router-link>
+            </el-menu-item>
+        </el-submenu>
         </el-menu>
         
     </div>

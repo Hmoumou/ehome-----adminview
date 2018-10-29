@@ -34,7 +34,13 @@
                     .then(res=>{
                        if(res.data.code == 200){
                            this.$message.success(res.data.msg)
-                          this.$router.push('/home')
+                           let userInfo = {
+                               ...this.formData,
+                               ...res.data.data
+                           }
+                        this.$store.commit('GET_USERINFO',userInfo)
+                        this.$router.push('/home')
+                        
                        }else{
                            console.log(res.data.msg)
                        }
