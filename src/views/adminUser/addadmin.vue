@@ -98,7 +98,7 @@ export default {
           //  this.getData()
   }
 };
-</script>
+</script> 
 
 <style scoped lang='scss' >
 .add{

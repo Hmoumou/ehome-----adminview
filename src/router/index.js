@@ -62,9 +62,23 @@ export default new Router({
             title:'新闻添加',
           },
           component:()=>import('@/views/news/newsadd')
-        }
-               
-
+        },
+        {
+          path:'/category',
+          name:'category',
+          meta:{
+            title:'分类添加',
+          },
+          component:()=>import('@/views/news/category')
+        } ,
+        {
+          path:'/categoryadmin',
+          name:'categoryadmin',
+          meta:{
+            title:'分类添加',
+          },
+          component:()=>import('@/views/news/categoryadmin')
+        }               
       ]
     }
   ]

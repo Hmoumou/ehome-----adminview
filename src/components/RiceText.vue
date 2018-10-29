@@ -27,8 +27,8 @@ import 'quill/dist/quill.bubble.css'
         data(){
             return{
                 formData:{
-                    content:'',
-                    contentText:''
+                    content:this.value.content,
+                    contentText:this.value.contentText
                 },
                  token:'',
                  editorOption:{
@@ -63,10 +63,10 @@ import 'quill/dist/quill.bubble.css'
                     this.token = res.data.data
                 })
             },
-            onEditorChange({ quill, html, text }) {
-                this.formData.contentText = text
-                this.formData.content = html
-                this.$emit('input',this.formData)
+            onEditorChange(res) {
+                this.formData.contentText = res.text
+                this.formData.content = res.html
+                this.$emit('input',{content:this.formData.content,contentText:this.formData.contentText})
             }
 
         },

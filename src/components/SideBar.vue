@@ -42,6 +42,16 @@
                     新闻添加
                 </router-link>
             </el-menu-item>
+            <el-menu-item class="item" index='/layout/category'>
+                <router-link to='/category'>
+                    分类添加
+                </router-link>
+            </el-menu-item>
+            <el-menu-item class="item" index='/layout/admin/category'>
+                <router-link to='/categoryadmin'>
+                    分类管理
+                </router-link>
+            </el-menu-item>
         </el-submenu>
         </el-menu>
         
