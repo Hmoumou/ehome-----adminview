@@ -7,7 +7,7 @@
                    <uploadimg v-model='newList.img'></uploadimg>
                </el-form-item>
                <el-form-item label='作者' >
-                 <el-input :disabled="true" v-model="newList.anthor"></el-input>
+                 <el-input :disabled="true" v-model="newList.author"></el-input>
               </el-form-item>
                <el-form-item label='新闻标题' >
                    <el-input  v-model="newList.title"></el-input>
@@ -46,8 +46,8 @@ import quillEditor from '../../components/RiceText.vue'
             return{
                 newList:{
                     title:'',
-                    avatar:'',
-                    anthor:'',
+                    img:'',
+                    author:'',
                     content:'',
                     contentText:'',
                     type:''                           
@@ -80,7 +80,7 @@ import quillEditor from '../../components/RiceText.vue'
         created(){
             // this.getValue()
             this.getCategory()
-            this.newList.anthor = this.$store.state.userInfo.username
+            this.newList.author = this.$store.state.userInfo.username
         },
         watch:{
             newcontent(val){

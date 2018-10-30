@@ -6,8 +6,8 @@ var instance = axios.create({
     baseURL,
     timeout:15000,
 })
-const xhr = {
-    get(url, data, config){
+class xhr {
+    static get(url, data, config){
         return new Promise((resolve,reject)=>{
             instance.get(url, {params:data},config).then(res=>{
                 resolve(res)
@@ -15,8 +15,8 @@ const xhr = {
                 reject(err)
             })
         })
-    },
-    fetch(url, data, config, methods){
+    }
+    static fetch(url, data, config, methods){
         return new Promise((resolve, reject)=>{
             instance[methods](url, data, config).then(res=>{
                 resolve(res)
@@ -24,12 +24,15 @@ const xhr = {
                 reject(err)
             })
         })
-    },
-    post(url, data, config){
+    }
+    static post(url, data, config){
        return this.fetch(url, data, config,'post')
-    },
-    delete(url, data, config){
+    }
+    static delete(url, data, config){
         return this.fetch(url, data, config,'delete')
      }
+    static patch(url, data, config){
+        return this.fetch(url, data, config, 'patch')
+    }
 }
 export default xhr

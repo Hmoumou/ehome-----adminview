@@ -53,8 +53,22 @@
                 </router-link>
             </el-menu-item>
         </el-submenu>
-        </el-menu>
-        
+         <el-submenu index="3">
+            <div slot='title'>
+                轮播图管理
+            </div>
+            <el-menu-item class="item" index='/layout/swiper'>
+                <router-link to='/swiper'>
+                    轮播图列表
+                </router-link>
+            </el-menu-item>
+             <el-menu-item class="item" index='/layout/swiperadd'>
+                <router-link to='/swiperadd'>
+                    添加轮播图
+                </router-link>
+            </el-menu-item>
+        </el-submenu>
+        </el-menu>        
     </div>
 </template>
 

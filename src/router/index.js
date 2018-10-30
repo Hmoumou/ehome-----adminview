@@ -78,7 +78,33 @@ export default new Router({
             title:'分类添加',
           },
           component:()=>import('@/views/news/categoryadmin')
-        }               
+        } ,
+        {
+          path:'/swiper',
+          name:'swiper',
+          meta:{
+            title:'轮播图管理',
+          },
+          component:()=>import('@/views/swiper/index')
+        },
+        {
+          path:'/swiperadd',
+          name:'swiperadd',
+          meta:{
+            title:'轮播图添加',
+          },
+          component:()=>import('@/views/swiper/swiperAdd')
+        },
+        {
+          path:'/swiperEdit',
+          name:'swiperEdit',
+          meta:{
+            title:'编辑轮播图',
+          },
+          component:()=>import('@/views/swiper/swiperAdd')
+        },
+
+
       ]
     }
   ]
