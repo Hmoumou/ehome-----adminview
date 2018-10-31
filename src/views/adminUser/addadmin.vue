@@ -11,7 +11,7 @@
                 <el-form-item label="姓名" required>
                   <el-input v-model="formData.username"></el-input>
                 </el-form-item>
-                 <el-form-item label="密码" required>
+                 <el-form-item v-if='!isEdit' label="密码" required>
                   <el-input v-model="formData.password" type='password'></el-input>
                 </el-form-item>
                  <el-form-item label="昵称" required>
@@ -41,7 +41,8 @@
                   <el-input v-model="formData.phone"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button  @click='handlesubmit' type='primary'>提交</el-button>
+                  <el-button v-if="!isEdit"  @click='handlesubmit' type='primary'>提交</el-button>
+                  <el-button v-else @click='handlesave' type='primary'>保存修改</el-button>
                 </el-form-item>
             </el-form>
 
@@ -65,7 +66,9 @@ export default {
         phone:'',
         sex:'1',
         password:''
-      }
+      },
+      isEdit:false,
+      formerData:{}
     };
   },
   methods:{
@@ -83,19 +86,46 @@ export default {
         }
       })
     },
-    //  getData(){
-    //             this.$axios.get(`/admin/adminuser/${this.id}`).then(res=>{
-    //                 console.log(res.data.data)
-    //                 this.detailData = res.data.data
-    //             })
-    //         }
+    handlesave(){
+      let id = this.$route.query.id
+      let EditData = {
+        ...this.formerData,
+        ...this.formData
+      }
+      this.$axios.patch(`/admin/adminuser/${id}`,EditData).then(res=>{
+        if(res.data.code == 200){
+          this.$message.success(res.data.msg)
+          this.$router.push({name:'adminUser'})
+        }
+      })
+    },
+  getEditData(){
+    let id = this.$route.query.id
+    this.$axios.get(`/admin/adminuser/${id}`).then(res=>{
+      this.formData = res.data.data
+      this.formerData = res.data.data
+    })
+  }
   },
   components:{
       upload,
   },
   created(){
-     this.id = this.$route.query.id
-          //  this.getData()
+        if(this.$route.name == 'adminEdit'){
+          this.isEdit = true
+          this.getEditData()
+        }else{
+          this.isEdit = false
+        }
+  },
+  watch:{
+    $route(to, form){
+      if(to.name == 'adminEdit'){
+        this.isEdit = true
+      }else{
+        this.isEdit = false
+      }
+    }
   }
 };
 </script> 

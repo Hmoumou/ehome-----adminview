@@ -12,13 +12,13 @@
                 <el-table-column
                 prop="nickname"
                 label="姓名"
-                width="120">
+               >
                 </el-table-column>
                 <el-table-column
                 prop="avatar"
                 class="avatar"
                 label="头像"
-                width="110">
+               >
                     <template slot-scope='scope'>
                         <img :src="scope.row.avatar" class="table-img">
                     </template>
@@ -26,22 +26,23 @@
                 <el-table-column
                 prop="phone"
                 label="手机号"
-                 width="180">
+                >
                 </el-table-column>
                  <el-table-column
                  prop='state'
                 :formatter = "stateFormat"
                 label="性别"
-                 width="90">
+                 >
                 </el-table-column>
                 <el-table-column
                 prop="desc"
                 label="个性签名"
-                 width="210">
+                width='200px'
+                 >
                 </el-table-column>
-                <el-table-column label='操作'>
+                <el-table-column label='操作' width='200px'>
                     <template slot-scope="scope">
-                        <el-button type='primary' size='mini' @click="handledetail(scope.row._id)">查看详细</el-button>
+                        <el-button type='warning' size='mini' @click="handledetail(scope.row._id)">编辑</el-button>
                         <el-button type='danger' size='mini' @click="handleremove(scope.row._id)">删除</el-button>      
                     </template>
                 </el-table-column>
@@ -100,7 +101,7 @@
                })
            },
            handledetail(id){
-               this.$router.push({name:'admindetail',query:{id}})
+               this.$router.push({name:'adminEdit',query:{id}})
            },
            handleremove(id){
                this.$axios.delete(`/admin/adminuser/${id}`).then(res=>{
@@ -129,15 +130,15 @@
         overflow-y: scroll;
         margin-bottom: 20px;
     }
-    .box{
-        text-align: center;
-    }
-    /deep/ .cell{
-        text-align: center;
-    }
+    // .box{
+    //     text-align: center;
+    // }
+    // /deep/ .cell{
+    //     text-align: center;
+    // }
     /deep/ .table-img{
     border-radius: 50%;
-    margin-left: 15px;
+    // margin-left: 10px;
 }
 }
 

@@ -6,7 +6,7 @@
                <el-form-item label='新闻头图'>
                    <uploadimg v-model='newList.img'></uploadimg>
                </el-form-item>
-               <el-form-item label='作者' >
+               <el-form-item  v-if='!isEdit' label='作者' >
                  <el-input :disabled="true" v-model="newList.author"></el-input>
               </el-form-item>
                <el-form-item label='新闻标题' >
@@ -28,7 +28,8 @@
                   <quill-editor v-model="newcontent"></quill-editor>
               </el-form-item>
               <el-form-item>
-                  <el-button type='primary' @click="handlesubmit">提交</el-button>
+                  <el-button v-if="!isEdit" type='primary' @click="handlesubmit">提交</el-button>
+                  <el-button v-else type='primary' @click="handlesave">保存编辑</el-button>
               </el-form-item>
            </el-form>
        </el-card>
@@ -53,18 +54,15 @@ import quillEditor from '../../components/RiceText.vue'
                     type:''                           
                 },
                 newcontent:{},
-                categories:[]
+                categories:[],
+                formerData:{},
+                isEdit:false
             }
         },
         methods:{
-            // getValue(value){
-            //     // this.newcontent = value
-            //     console.log('woshivalue',value)
-            // },
             getCategory(){
                 this.$axios.get('/admin/category').then(res=>{
                     this.categories = [...res.data.data]
-                    // console.log(this.newList.type)
                 }
                 )
             },
@@ -75,10 +73,33 @@ import quillEditor from '../../components/RiceText.vue'
                         this.$router.push({name:'news'})
                     }
                 })
+            },
+            handlesave(){
+                let id  = this.$route.query.val._id
+                let formData = {
+                    ...this.formerData,
+                    ...this.newList
+                }
+                console.log('1212121212121212121',formData)
+                this.$axios.patch(`/admin/news/${id}`,formData).then(res=>{
+                    if(res.data.code == 200){
+                        this.$message.success(res.data.msg)
+                        this.$router.push({name:'news'})
+                    }
+                })
             }
         },
         created(){
-            // this.getValue()
+           if(this.$route.name == 'newsEdit'){
+               this.isEdit = true
+               this.newList = this.$route.query.val
+               this.formerData = this.$route.query.val
+               this.newcontent.contentText = this.$route.query.val.contentText
+               this.newcontent.content = this.$route.query.val.content
+            //    console.log(this.$route.query.val);
+           }else{
+               this.isEdit = false
+           }
             this.getCategory()
             this.newList.author = this.$store.state.userInfo.username
         },
@@ -87,6 +108,13 @@ import quillEditor from '../../components/RiceText.vue'
                 console.log('1111',val)
                 this.newList.content = val.content
                 this.newList.contentText = val.contentText 
+            },
+            $route(to, form){
+                if(to.name == 'newsEdit'){
+                    this.isEdit = true
+                }else{
+                    this.isEdit = false
+                }
             }
         }
         

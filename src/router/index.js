@@ -33,10 +33,10 @@ export default new Router({
           component:()=>import('@/views/adminUser')
         },
         {
-          path:'/admindetail',
-          name:'admindetail',
+          path:'/adminEdit',
+          name:'adminEdit',
           meta:{
-            title:'管理员详情',
+            title:'编辑管理员',
           },
           component:()=>import('@/views/adminUser/addadmin')
         },
@@ -60,6 +60,14 @@ export default new Router({
           name:'newsadd',
           meta:{
             title:'新闻添加',
+          },
+          component:()=>import('@/views/news/newsadd')
+        },
+        {
+          path:'/newsEdit',
+          name:'newsEdit',
+          meta:{
+            title:'新闻编辑',
           },
           component:()=>import('@/views/news/newsadd')
         },
